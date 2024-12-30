@@ -36,6 +36,6 @@ jobs:
           rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
           cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
-          . install/setup.bash
+          bash -c "source install/setup.bash"
           python3 ./src/mypkg/mypkg/batterytalker.py
 
