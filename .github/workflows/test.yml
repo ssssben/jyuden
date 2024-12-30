@@ -23,20 +23,18 @@ jobs:
         sudo apt-get install -y ros-humble-desktop
 
     - name: Install dependencies
-      run: sudo apt-get install -y python3-colcon-common-extensions
-
-    - name: Prepare workspace
       run: |
-        mkdir -p ~/ros2_jyuuden_ws/src
-        mv ./src/mypkg ~/ros2_jyuuden_ws/src/
-        cd ~/ros2_jyuuden_ws
+        sudo apt-get install -y python3-colcon-common-extensions
+        sudo apt-get install -y python3-psutil
+
+    - name: Build workspace
+      run: |
         source /opt/ros/humble/setup.bash
+        cd ~/ros2_jyuuden_ws
         colcon build
 
-    - name: Run custom bash test script
+    - name: Run tests
       run: |
-        cd ~/ros2_jyuuden_ws
-        chmod +x src/mypkg/test/test.bash
-        source install/setup.bash
-        bash src/mypkg/test/test.bash
+        source ~/ros2_jyuuden_ws/install/setup.bash
+        ./src/mypkg/test/test.bash
 
