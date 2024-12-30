@@ -29,8 +29,8 @@ jobs:
 
       - name: Run BatteryTalker Node
         run: |
-          rsync -av ./ /root/ros2_ws/src/mypkg/
-          cd /root/ros2_ws
+          rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
+          cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
           source install/setup.bash
           python3 ./src/mypkg/test/batterytalker.py
