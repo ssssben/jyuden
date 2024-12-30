@@ -27,18 +27,11 @@ jobs:
         run: |
           bash -c "source /opt/ros/foxy/setup.bash"
 
-      - name: Create mypkg directory and sync files
+      - name: Run BatteryTalker Node
         run: |
-          mkdir -p /root/ros2_jyuuden_ws/src/mypkg
           rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
-
-      - name: Build ROS 2 workspace
-        run: |
           cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
-
-      - name: Source ROS 2 workspace and run BatteryTalker
-        run: |
-          source /root/ros2_jyuuden_ws/install/setup.bash
-          python3 /root/ros2_jyuuden_ws/src/mypkg/mypkg/batterytalker.py
+          . install/setup.bash
+          python3 ./src/mypkg/mypkg/batterytalker.py
 
