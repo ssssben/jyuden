@@ -33,6 +33,6 @@ jobs:
     - name: Run tests (excluding flake8 and copyright tests)
       run: |
         source install/setup.bash
-        colcon test --packages-ignore mypkg.test.test_flake8 mypkg.test.test_copyright
-        colcon test-result --verbose
+        pytest --deselect mypkg.test.test_flake8::test_flake8 --deselect mypkg.test.test_copyright::test_copyright
+        pytest --maxfail=5 --disable-warnings
 
