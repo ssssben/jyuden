@@ -37,5 +37,5 @@ jobs:
           cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
           bash -c "source install/setup.bash"
-          python3 ./src/mypkg/mypkg/batterytalker.py
+          python3 /root/ros2_jyuuden_ws/src/mypkg/mypkg/batterytalker.py
 
