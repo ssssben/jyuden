@@ -33,7 +33,7 @@ jobs:
 
       - name: Run BatteryTalker Node
         run: |
-          rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
+          rsync -av --exclude='.git' ./src/mypkg/ /root/ros2_jyuuden_ws/src/mypkg/
           cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
           bash -c "source install/setup.bash"
