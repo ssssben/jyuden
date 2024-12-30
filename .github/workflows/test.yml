@@ -16,7 +16,7 @@ jobs:
 
       - name: Set up ROS 2 environment
         run: |
-          source /opt/ros/foxy/setup.bash
+          . /opt/ros/foxy/setup.bash
 
       - name: Sync code to workspace
         run: |
@@ -31,7 +31,7 @@ jobs:
 
       - name: Source ROS 2 workspace
         run: |
-          source /root/ros2_jyuuden_ws/install/setup.bash
+          . /root/ros2_jyuuden_ws/install/setup.bash
 
       - name: Run tests
         run: |
