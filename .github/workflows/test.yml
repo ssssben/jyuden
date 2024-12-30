@@ -30,6 +30,7 @@ jobs:
     - name: Build workspace
       run: |
         source /opt/ros/humble/setup.bash
+        echo "Current directory: $GITHUB_WORKSPACE"
         cd $GITHUB_WORKSPACE/ros2_jyuuden_ws
         colcon build
 
