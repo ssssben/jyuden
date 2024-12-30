@@ -30,11 +30,11 @@ jobs:
     - name: Build workspace
       run: |
         source /opt/ros/humble/setup.bash
-        cd ~/ros2_jyuuden_ws
+        cd $GITHUB_WORKSPACE/ros2_jyuuden_ws
         colcon build
 
     - name: Run tests
       run: |
-        source ~/ros2_jyuuden_ws/install/setup.bash
+        source $GITHUB_WORKSPACE/ros2_jyuuden_ws/install/setup.bash
         ./src/mypkg/test/test.bash
 
