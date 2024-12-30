@@ -25,7 +25,7 @@ jobs:
 
       - name: Setup ROS 2 environment
         run: |
-          source /opt/ros/foxy/setup.bash
+          bash -c "source /opt/ros/foxy/setup.bash"
 
       - name: Run BatteryTalker Node
         run: |
