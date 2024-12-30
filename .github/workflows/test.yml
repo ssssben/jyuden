@@ -1,9 +1,7 @@
-name: Test ROS 2 Workflow
+name: test
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   test:
@@ -11,15 +9,16 @@ jobs:
     container: ros:foxy
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
+      - name: Install rsync
+        run: |
+          apt-get update
+          apt-get install -y rsync
 
       - name: Build and test
         run: |
-          bash -c "source /opt/ros/foxy/setup.bash"
-          cd /workspace
-
-          colcon build --symlink-install
-          . install/setup.bash
+          rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
+          cd /root/ros2_jyuuden_ws
           bash -xv ./src/mypkg/test/test.bash /root
 
