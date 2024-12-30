@@ -16,7 +16,7 @@ jobs:
 
       - name: Build and test
         run: |
-          rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
+          rsync -avR ./ /root/ros2_jyuuden_ws/src/
           cd /root/ros2_jyuuden_ws
           colcon build --symlink-install
           . install/setup.bash
