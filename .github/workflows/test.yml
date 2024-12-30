@@ -31,11 +31,11 @@ jobs:
       run: |
         source /opt/ros/humble/setup.bash
         echo "Current directory: $GITHUB_WORKSPACE"
-        cd $GITHUB_WORKSPACE/jyuuden/ros2_jyuuden_ws
+        cd $GITHUB_WORKSPACE/ros2_jyuuden_ws
         colcon build
 
     - name: Run tests
       run: |
-        source $GITHUB_WORKSPACE/jyuuden/ros2_jyuuden_ws/install/setup.bash
+        source $GITHUB_WORKSPACE/ros2_jyuuden_ws/install/setup.bash
         ./src/mypkg/test/test.bash
 
