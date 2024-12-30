@@ -39,6 +39,6 @@ jobs:
 
       - name: Run BatteryTalker Node
         run: |
-          source /root/ros2_jyuuden_ws/install/setup.bash
+          bash -c "source /root/ros2_jyuuden_ws/install/setup.bash"
           python3 ./src/mypkg/test/batterytalker.py
 
