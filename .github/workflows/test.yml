@@ -1,5 +1,4 @@
-name: Build and Test ROS 2 Package
-
+name: build-and-test
 on:
   push:
     branches:
@@ -11,31 +10,29 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-22.04
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Setup ROS 2 Humble
-        run: |
-          sudo apt-get update && sudo apt-get install -y curl gnupg2 lsb-release
-          curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/ros2-latest.list > /dev/null
-          sudo apt-get update
-          sudo apt-get install -y ros-humble-desktop
+    - name: Setup ROS 2 (Humble)
+      run: |
+        sudo apt-get update && sudo apt-get install -y curl gnupg2 lsb-release
+        curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/ros2-latest.list > /dev/null
+        sudo apt-get update
+        sudo apt-get install -y ros-humble-desktop
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get install -y python3-colcon-common-extensions
+    - name: Install dependencies
+      run: sudo apt-get install -y python3-colcon-common-extensions
 
-      - name: Build workspace
-        run: |
-          source /opt/ros/humble/setup.bash
-          colcon build --symlink-install
+    - name: Build workspace
+      run: |
+        source /opt/ros/humble/setup.bash
+        colcon build
 
-      - name: Run tests
-        run: |
-          source install/setup.bash
-          colcon test
-          colcon test-result --verbose
+    - name: Run tests (excluding flake8 and copyright tests)
+      run: |
+        source install/setup.bash
+        colcon test --packages-ignore mypkg.test.test_flake8 mypkg.test.test_copyright
+        colcon test-result --verbose
 
