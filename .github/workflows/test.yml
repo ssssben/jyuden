@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip python3-psutil
+          sudo apt-get install -y python3-pip python3-psutil rsync
           sudo apt-get install -y ros-foxy-rclpy ros-foxy-std-msgs
 
       - name: Setup ROS 2 environment
