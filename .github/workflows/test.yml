@@ -25,13 +25,18 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install -y python3-colcon-common-extensions
 
-    - name: Build workspace
+    - name: Prepare workspace
       run: |
+        mkdir -p ~/ros2_jyuuden_ws/src
+        mv ./src/mypkg ~/ros2_jyuuden_ws/src/
+        cd ~/ros2_jyuuden_ws
         source /opt/ros/humble/setup.bash
         colcon build
 
     - name: Run custom bash test script
       run: |
+        cd ~/ros2_jyuuden_ws
+        chmod +x src/mypkg/test/test.bash
         source install/setup.bash
         bash src/mypkg/test/test.bash
 
