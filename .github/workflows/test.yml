@@ -18,6 +18,7 @@ jobs:
 
       - name: Build and test
         run: |
+          mkdir -p /root/ros2_jyuuden_ws/src/mypkg/
           rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
           cd /root/ros2_jyuuden_ws
           bash -xv ./src/mypkg/test/test.bash /root
