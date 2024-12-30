@@ -1,13 +1,28 @@
-name: test
-on: push
+name: Test ROS 2 Workflow
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   test:
     runs-on: ubuntu-20.04
-    container: ros:foxy
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: build and test
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
         run: |
-          rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
-          cd /root/ros2_jyuuden_ws
-          bash -xv ./src/mypkg/test/test.bash /root
+          docker build -t ros2_foxy_rsync_image .
+
+      - name: Run test in container
+        run: |
+          docker run --rm -v $GITHUB_WORKSPACE:/root/ros2_jyuuden_ws ros2_foxy_rsync_image bash -c "
+            cd /root/ros2_jyuuden_ws &&
+            colcon build --symlink-install &&
+            . install/setup.bash &&
+            bash -xv ./src/mypkg/test/test.bash /root
+          "
+
