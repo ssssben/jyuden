@@ -16,8 +16,7 @@ jobs:
 
       - name: Build and test
         run: |
-          source /opt/ros/foxy/setup.bash
-
+          bash -c "source /opt/ros/foxy/setup.bash"
           cd /workspace
 
           colcon build --symlink-install
