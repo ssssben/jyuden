@@ -19,6 +19,9 @@ jobs:
       - name: Install ROS 2 Foxy
         run: |
           curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros2.repos -o /tmp/ros2.repos
+          
+          cat /tmp/ros2.repos
+
           vcs import src < /tmp/ros2.repos
 
           apt-get install -y locales lsb-release curl gnupg2
