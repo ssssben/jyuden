@@ -8,21 +8,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
-    
+    container: ros:foxy
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image
+      - name: Build and test
         run: |
-          docker build -t ros2_foxy_rsync_image .
+          source /opt/ros/foxy/setup.bash
 
-      - name: Run test in container
-        run: |
-          docker run --rm -v $GITHUB_WORKSPACE:/root/ros2_jyuuden_ws ros2_foxy_rsync_image bash -c "
-            cd /root/ros2_jyuuden_ws &&
-            colcon build --symlink-install &&
-            . install/setup.bash &&
-            bash -xv ./src/mypkg/test/test.bash /root
-          "
+          cd /workspace
+
+          colcon build --symlink-install
+          . install/setup.bash
+          bash -xv ./src/mypkg/test/test.bash /root
 
