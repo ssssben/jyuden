@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install rsync and vcs
+        run: |
+          apt-get update
+          apt-get install -y rsync python3-vcstool
+
       - name: Install ROS 2 Foxy
         run: |
           curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros2.repos -o /tmp/ros2.repos
