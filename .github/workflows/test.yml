@@ -1,38 +1,37 @@
-name: Test ROS 2 Workflow
+name: Test BatteryTalker Node
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   test:
     runs-on: ubuntu-20.04
-    container: ros:foxy
+    container: ros:foxy-ros-base
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Install necessary packages
+      - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install -y curl gnupg2 rsync python3-colcon-common-extensions
+          sudo apt-get update
+          sudo apt-get install -y python3-pip python3-psutil
+          sudo apt-get install -y ros-foxy-rclpy ros-foxy-std-msgs
 
-      - name: Set up workspace and test
+      - name: Setup ROS 2 environment
         run: |
-          bash -c "
-            mkdir -p /root/ros2_jyuuden_ws/src/mypkg
-            rsync -av ./ /root/ros2_jyuuden_ws/src/mypkg/
-            dir=/root
-            [ \"\$1\" != \"\" ] && dir=\"\$1\"
-            cd \$dir/ros2_jyuuden_ws || { echo \"Workspace not found\"; exit 1; }
-            colcon build --symlink-install || { echo \"Build failed\"; exit 1; }
-            source install/setup.bash
-            ros2 run mypkg batterytalker &
-            TALKER_PID=\$!
-            ros2 topic echo /battery_status > /tmp/battery_status.log &
-            ECHO_PID=\$!
-            trap \"kill -SIGINT \$TALKER_PID \$ECHO_PID; exit\" SIGINT SIGTERM
-            tail -f /tmp/battery_status.log
-          "
+          source /opt/ros/foxy/setup.bash
+
+      - name: Run BatteryTalker Node
+        run: |
+          rsync -av ./ /root/ros2_ws/src/mypkg/
+          cd /root/ros2_ws
+          colcon build --symlink-install
+          source install/setup.bash
+          python3 ./src/mypkg/test/batterytalker.py
 
