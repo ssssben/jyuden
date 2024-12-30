@@ -22,6 +22,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3-pip python3-psutil rsync
           sudo apt-get install -y ros-foxy-rclpy ros-foxy-std-msgs
+          sudo apt-get install -y python3-rclpy
 
       - name: Setup ROS 2 environment
         run: |
