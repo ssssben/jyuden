@@ -8,8 +8,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Sync files with rsync
+        run: |
+          rsync -av --log-file=rsync_log.txt ./ /root/ros2_jyuden_ws/src/mypkg/
+
+      - name: Upload rsync log
+        uses: actions/upload-artifact@v3
+        with:
+          name: rsync-log
+          path: rsync_log.txt
+
       - name: Build and test
         run: |
-          rsync -av ./ /root/ros2_jyuden_ws/src/mypkg/
           cd /root/ros2_jyuden_ws
           bash -xv ./src/mypkg/test/test.bash /root
+
