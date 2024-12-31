@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SPDX-FileCopyrightText: 2024 Ben
 # SPDX-License-Identifier: BSD-3-Clause
 from setuptools import setup
