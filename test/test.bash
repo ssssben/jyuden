@@ -13,4 +13,7 @@ ros2 topic echo /battery_status > /tmp/battery_status.log &
 ECHO_PID=$!
 trap "kill -SIGINT $TALKER_PID $ECHO_PID; exit" SIGINT SIGTERM
 tail -f /tmp/battery_status.log
+<<<<<<< HEAD
 
+=======
+>>>>>>> Initial commit
