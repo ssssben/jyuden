@@ -4,9 +4,7 @@
 from setuptools import setup
 import os
 from glob import glob
-=======
 from setuptools import setup
->>>>>>> Initial commit
 
 package_name = 'mypkg'
 
@@ -23,11 +21,7 @@ setup(
     zip_safe=True,
     maintainer='bun',
     maintainer_email='vlongbf@gmail.com',
-<<<<<<< HEAD
-    description='充電残量を知らせる',
-=======
     description='充電残量を表示',
->>>>>>> Initial commit
     license='BSD-3-Clause',
     tests_require=['pytest'],
     entry_points={
