@@ -16,18 +16,11 @@ class BatteryTalker(Node):
         msg = Int32(data=percent)
         self.pub.publish(msg)
 
-
 def main():
     rclpy.init()
     node = BatteryTalker()
-
-    try:
-        while rclpy.ok():
-            rclpy.spin_once(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        rclpy.shutdown()
+    rclpy.spin(node)
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     try:
