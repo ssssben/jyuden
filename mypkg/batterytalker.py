@@ -11,7 +11,7 @@ class BatteryTalker(Node):
         
     def timer_callback(self):
         battery = psutil.sensors_battery()
-        percent = battery.percent if battery else 0
+        percent = int(battery.percent) if battery else 0
         self.get_logger().info(f"Battery level: {percent}%")
         msg = Int32(data=percent)
         self.pub.publish(msg)
