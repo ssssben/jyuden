@@ -10,9 +10,6 @@ class BatteryTalker(Node):
         self.create_timer(1.0, self.timer_callback)
 
     def timer_callback(self):
-        if platform.system() != "Linux":
-        self.get_logger().warn("Not running on Linux. Skipping battery info retrieval.")
-        return
         battery = psutil.sensors_battery()
         if battery:
             percent = battery.percent
@@ -23,14 +20,14 @@ class BatteryTalker(Node):
         else:
             self.get_logger().warn("Battery information not available.")
 
-    def main():
-        rclpy.init()
-        node = BatteryTalker()
-        rclpy.spin(node)
-        rclpy.shutdown()
+def main():
+    rclpy.init()
+    node = BatteryTalker()
+    rclpy.spin(node)
+    rclpy.shutdown()
 
-    if __name__ == '__main__':
-        try:
-            main()
-        except Exception as e:
-            print(f"Error occurred: {e}")
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as e:
+        print(f"Error occurred: {e}")
