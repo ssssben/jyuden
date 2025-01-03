@@ -21,10 +21,5 @@ class BatteryTalker(Node):
 def main():
     rclpy.init()
     node = BatteryTalker()
-    try
     rclpy.spin(node)
-    except Exception as e:
-        node.get_logger().error(f"An error occurred: {str(e)}")
-        node.get_logger().info("Shutting down...")
-        rclpy.shutdown()
-        raise
+    rclpy.shutdown()
