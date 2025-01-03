@@ -8,31 +8,19 @@ class BatteryTalker(Node):
         super().__init__('batterytalker')
         self.pub = self.create_publisher(Int32, 'battery_status', 10)
         self.create_timer(1.0, self.timer_callback)
-
+        
     def timer_callback(self):
-        try:
-            battery = psutil.sensors_battery()
-            if battery:
-                percent = battery.percent
-                self.get_logger().info(f"Battery level: {percent}%")
-                msg = Int32()
-                msg.data = int(percent)
-            else:
-                self.get_logger().warn("Battery level: nothing")
-                msg = Int32()
-                msg.data = 0
-            self.pub.publish(msg)
-        except Exception as e:
-            self.get_logger().error(f"Error retrieving battery information: {e}")
-            msg = Int32()
-            msg.data = 0
-            self.pub.publish(msg)
+        battery = psutil.sensors_battery()
+        percent = battery.percent if battery else 0
+        self.get_logger().info(f"Battery level: {percent}%")
+        msg = Int32(data=percent)
+        self.pub.publish(msg)
+
 
 def main():
     rclpy.init()
     node = BatteryTalker()
     rclpy.spin(node)
-    rclpy.shutdown()
 
 if __name__ == '__main__':
     try:
