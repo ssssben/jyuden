@@ -4,7 +4,7 @@
 
 dir=~
 [ "$1" != "" ] && dir="$1"
-cd $dir/ros2_jyuuden_ws || { echo "Workspace not found"; exit 1; }
+cd $dir/ros2_ws || { echo "Workspace not found"; exit 1; }
 colcon build --symlink-install || { echo "Build failed"; exit 1; }
 source install/setup.bash
 ros2 run mypkg batterytalker &
