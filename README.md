@@ -1,5 +1,5 @@
 # ROS 2BatteryTalkerでパソコンの充電残量確認
-このROS 2パッケージは、`BatteryTalker` ノードを使用して、システムのバッテリーステータス（残量）を定期的にパブリッシュします。`psutil`ライブラリを使用してバッテリーの状態を取得し、ROS 2のトピック `battery_status` にパブリッシュします。`BatteryTalker`ノードは、1秒ごとにバッテリーの状態を更新します。
+このROS 2パッケージは、`BatteryTalker` ノードを使用して、システムのバッテリー残量を定期的にパブリッシュします。バッテリーの状態を取得し、ROS 2のトピック `battery_status` にパブリッシュします。`BatteryTalker`ノードは、1秒ごとにバッテリーの状態を更新します。
 ## 概要
 - `BatteryTalker`:このノードは、毎秒ごとに現在使用されてるデバイスの充電残量を出力します。
 - `BatteryListener`:このノードは、テスト用であり、`BatteryTalker`から受け取った情報を確認するために再度繰り返す。
