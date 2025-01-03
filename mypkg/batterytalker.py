@@ -21,6 +21,7 @@ def main():
     rclpy.init()
     node = BatteryTalker()
     rclpy.spin(node)
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     try:
