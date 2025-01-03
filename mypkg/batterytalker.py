@@ -18,7 +18,7 @@ class BatteryTalker(Node):
                 msg = Int32()
                 msg.data = int(percent)
             else:
-                self.get_logger().warn("Battery information not available. Sending default value 0.")
+                self.get_logger().warn("Battery level: nothing")
                 msg = Int32()
                 msg.data = 0
             self.pub.publish(msg)
