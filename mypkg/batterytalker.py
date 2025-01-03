@@ -20,8 +20,14 @@ class BatteryTalker(Node):
 def main():
     rclpy.init()
     node = BatteryTalker()
-    rclpy.spin(node)
-    rclpy.shutdown()
+
+    try:
+        while rclpy.ok():
+            rclpy.spin_once(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     try:
