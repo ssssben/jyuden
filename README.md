@@ -37,4 +37,12 @@ ros2 run mypkg batterytalker
 
 ## 動作環境
 ### 必要な環境
+- Ubuntu 22.04 LTS
+- ROS 2 (Foxy以降)
+- Python 3.8以上
 
+### ライセンス
+このリポジトリはBSD-3-Clauseライセンスのもとで公開されています。
+
+### Copyright
+© 2024 Ben Fang
