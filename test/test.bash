@@ -8,7 +8,7 @@ dir=~
 cd $dir/ros2_ws
 colcon build
 source $dir/.bashrc
-ros2 run mypkg batterytalker > /tmp/mypkg.log
+timeout 30 ros2 run mypkg batterytalker > /tmp/mypkg.log
 
 cat /tmp/mypkg.log |
 grep 'Battery level'
