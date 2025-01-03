@@ -10,15 +10,23 @@ class BatteryTalker(Node):
         self.create_timer(1.0, self.timer_callback)
 
     def timer_callback(self):
-        battery = psutil.sensors_battery()
-        if battery:
-            percent = battery.percent
-            self.get_logger().info(f"Battery level: {percent}%")
-            msg = Int32()
-            msg.data = int(percent)
+        try:
+            battery = psutil.sensors_battery()
+            if battery:
+                percent = battery.percent
+                self.get_logger().info(f"Battery level: {percent}%")
+                msg = Int32()
+                msg.data = int(percent)
+            else:
+                self.get_logger().warn("Battery information not available. Sending default value 0.")
+                msg = Int32()
+                msg.data = 0
             self.pub.publish(msg)
-        else:
-            self.get_logger().warn("Battery information not available.")
+        except Exception as e:
+            self.get_logger().error(f"Error retrieving battery information: {e}")
+            msg = Int32()
+            msg.data = 0
+            self.pub.publish(msg)
 
 def main():
     rclpy.init()
@@ -31,3 +39,4 @@ if __name__ == '__main__':
         main()
     except Exception as e:
         print(f"Error occurred: {e}")
+
