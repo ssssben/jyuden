@@ -19,6 +19,7 @@ class BatteryTalker(Node):
             self.pub.publish(msg)
         else:
             self.get_logger().warn("Battery information not available.")
+            self.get_logger().warn("Please ensure the system has a battery or is not running in a virtual environment.")
 
 def main():
     rclpy.init()
