@@ -4,8 +4,9 @@
 
 dir=~
 [ "$1" != "" ] && dir="$1"
+source $dir/.bashrc
 cd $dir/ros2_ws || { echo "Workspace not found"; exit 1; }
-colcon build --symlink-install || { echo "Build failed"; exit 1; }
+colcon build || { echo "Build failed"; exit 1; }
 source install/setup.bash
 ros2 run mypkg batterytalker &
 TALKER_PID=$!
@@ -13,3 +14,6 @@ ros2 topic echo /battery_status > /tmp/battery_status.log &
 ECHO_PID=$!
 trap "kill -SIGINT $TALKER_PID $ECHO_PID; exit" SIGINT SIGTERM
 tail -f /tmp/battery_status.log
+
+cat /tmp/mypkg.log |
+grep 'Battery level'
