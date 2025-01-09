@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>mypkg</name>
+  <name>jyuden</name>
   <version>0.0.0</version>
   <description>充電残量を表示</description>
-  <maintainer email="vlongbf@gmail.com">bun</maintainer>
+  <maintainer email="vlongbf@gmail.com">ben fang</maintainer>
   <license>BSD-3-Clause</license>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>

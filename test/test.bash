@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-FileCopyrightText: 2024 Ben
+# SPDX-FileCopyrightText: 2025 ben fang
 # SPDX-License-Identifier: BSD-3-Clause
 
 dir=~
@@ -8,7 +8,7 @@ dir=~
 cd $dir/ros2_ws
 colcon build
 source $dir/.bashrc
-timeout 10 ros2 launch mypkg talk_listen.launch.py > /tmp/mypkg.log
+timeout 10 ros2 launch jyuden talk_listen.launch.py > /tmp/jyuden.log
 
-cat /tmp/mypkg.log |
+cat /tmp/jyuden.log |
 grep 'Count: 9'
