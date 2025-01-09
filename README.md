@@ -24,11 +24,11 @@ $ ros2 run jyuden batterylistener
 - バッテリー残量が20%以下のとき
 ```
 $ ros2 run jyuden batterylistener
-[INFO] [1736392657.650492455] [batterylistener]: Received battery level: 20% -- Count: 1
+[INFO] [1736392657.650492455] [batterylistener]: Received battery level: 18% -- Count: 1
 [WARN] [1736392657.650813334] [batterylistener]: Battery level is low!
-[INFO] [1736392658.644964797] [batterylistener]: Received battery level: 20% -- Count: 2
+[INFO] [1736392658.644964797] [batterylistener]: Received battery level: 18% -- Count: 2
 [WARN] [1736392658.645240354] [batterylistener]: Battery level is low!
-[INFO] [1736392659.645093997] [batterylistener]: Received battery level: 20% -- Count: 3
+[INFO] [1736392659.645093997] [batterylistener]: Received battery level: 18% -- Count: 3
 [WARN] [1736392659.645472039] [batterylistener]: Battery level is low!
 ```
 # 動作環境
