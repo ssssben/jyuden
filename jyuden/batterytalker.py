@@ -14,7 +14,7 @@ class BatteryTalker(Node):
     def cb(self):
         battery = psutil.sensors_battery()
         percent = int(battery.percent) if battery else 0
-        self.get_logger().info(f"Battery level: {percent}%")
+        #self.get_logger().debug(f"{percent}%")
         msg = Int16(data=percent)
         self.pub.publish(msg)
 

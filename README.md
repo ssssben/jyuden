@@ -1,47 +1,45 @@
-# ROS 2BatteryTalkerでパソコンの充電残量確認
-このROS 2パッケージは、`BatteryTalker` ノードを使用して、システムのバッテリー残量を定期的にパブリッシュします。バッテリーの状態を取得し、ROS 2のトピック `battery_status` にパブリッシュします。`BatteryTalker`ノードは、1秒ごとにバッテリーの状態を更新します。
-## 概要
-- `BatteryTalker`:このノードは、毎秒ごとに現在使用されてるデバイスの充電残量を出力します。
-- `BatteryListener`:このノードは、テスト用であり、`BatteryTalker`から受け取った情報を確認するために再度繰り返す。
-## セットアップ方法
-### リポジトリをクローン
-このリポジトリをクローンします
-```
-git clone https://github.com/ssssben/jyuuden.git
-```
-### 使い方
-はじめにディレクトリに移動してビルドをしてください
-```
-cd jyuuden
-colcon build
-```
-そして環境をソースしてください
-```
-source install/setup.bash
-```
-ノードを実行します
-```
-ros2 run mypkg batterytalker
-```
+# jyuden
+このROS 2パッケージは、`batterytalker` ノードを使用して、システムのバッテリー残量を定期的にパブリッシュします。バッテリーの状態を取得し、ROS 2のトピック `battery_status` にパブリッシュします。`batterytalker`ノードは、1秒ごとにバッテリーの状態を更新します。
+# 概要
+- `batterytalker`:このノードは、毎秒ごとに現在使用されてるデバイスの充電残量を出力します。
+- `batterylistener`:このノードは、テスト用であり、`batterylistener`から受け取った情報を確認するために再度繰り返す。
+# 実行例
+まずは端末を２つ用意します
+## 端末１
 
-## 実行例
-以下が`batterytalker`の実行例になります:
+`batterytalker`ノードを実行し現在使用端末のバッテリー状態を取得します
 ```
-[INFO] [1735893812.604802516] [batterytalker]: Battery level: 97%
-[INFO] [1735893813.598910572] [batterytalker]: Battery level: 97%
-[INFO] [1735893814.599055181] [batterytalker]: Battery level: 97%
-[INFO] [1735893815.599096051] [batterytalker]: Battery level: 97%
-[INFO] [1735893816.598954601] [batterytalker]: Battery level: 97%
+$ ros2 run jyuden batterytalker
+# なにも表示されませんが正常に作動しています。
 ```
+## 端末２
+`batterylistener`ノードを実行し、結果を表示します
+- バッテリー残量が20%以上のとき
+```
+$ ros2 run jyuden batterylistener
+[INFO] [1736391445.670933839] [batterylistener]: Received battery level: 100% -- Count: 1
+[INFO] [1736391446.665502766] [batterylistener]: Received battery level: 100% -- Count: 2
+[INFO] [1736391447.665620294] [batterylistener]: Received battery level: 100% -- Count: 3
+```
+- バッテリー残量が20%以下のとき
+```
+$ ros2 run jyuden batterylistener
+[INFO] [batterylistener]: Received battery level: 18% -- Count: 1
+[WARN] [batterylistener]: Battery level is low!
+[INFO] [batterylistener]: Received battery level: 18% -- Count: 2
+[WARN] [batterylistener]: Battery level is low!
+[INFO] [batterylistener]: Received battery level: 18% -- Count: 3
+[WARN] [batterylistener]: Battery level is low!
 
-## 動作環境
-### 必要な環境
+```
+# 動作環境
+## 必要な環境
 - Ubuntu 22.04 LTS
 - ROS 2 (Foxy以降)
 - Python 3.8以上
 
-### ライセンス
+## ライセンス
 このリポジトリはBSD-3-Clauseライセンスのもとで公開されています。
 
-### Copyright
+## Copyright
 © 2024 Ben Fang

@@ -14,6 +14,8 @@ class BatteryListener(Node):
         battery_level = msg.data
         self.count += 1
         self.get_logger().info(f"Received battery level: {battery_level}% -- Count: {self.count}")
+        if battery_level < 20.0:
+            self.get_logger().warn('Battery level is low!')
 
 def main():
     rclpy.init()
