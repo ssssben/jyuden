@@ -7,12 +7,12 @@ import launch_ros.actions
 
 def generate_launch_description():
     batterytalker = launch_ros.actions.Node(
-        package='jyuden',
+        package='jyuden_pkg',
         executable='batterytalker',
         output='screen'
     )
     batterylistener = launch_ros.actions.Node(
-        package='jyuden',
+        package='jyuden_pkg',
         executable='batterylistener',
         output='screen'
     )

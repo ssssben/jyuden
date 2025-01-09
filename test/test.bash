@@ -8,7 +8,7 @@ dir=~
 cd $dir/ros2_ws
 colcon build
 source $dir/.bashrc
-timeout 10 ros2 launch jyuden talk_listen.launch.py > /tmp/jyuden.log
+timeout 10 ros2 launch jyuden_pkg talk_listen.launch.py > /tmp/jyuden_pkg.log
 
-cat /tmp/jyuden.log |
+cat /tmp/jyuden_pkg.log |
 grep 'Count: 9'

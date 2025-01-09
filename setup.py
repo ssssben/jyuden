@@ -3,7 +3,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'jyuden'
+package_name = 'jyuden_pkg'
 
 setup(
     name=package_name,
@@ -24,8 +24,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'batterytalker = jyuden.batterytalker:main',
-            'batterylistener = jyuden.batterylistener:main',
+            'batterytalker = jyuden_pkg.batterytalker:main',
+            'batterylistener = jyuden_pkg.batterylistener:main',
         ],
     },
 )
