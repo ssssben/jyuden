@@ -9,21 +9,21 @@
 
 `batterytalker`ノードを実行し、現在使用端末のバッテリー状態を取得します
 ```
-$ ros2 run jyuden batterytalker
+$ ros2 run jyuden_pkg batterytalker
 # なにも表示されませんが正常に作動しています。
 ```
 ### 端末２
 `batterylistener`ノードを実行し、結果を表示します
 - バッテリー残量が20%以上のとき
 ```
-$ ros2 run jyuden batterylistener
+$ ros2 run jyuden_pkg batterylistener
 [INFO] [1736391445.670933839] [batterylistener]: Received battery level: 100% -- Count: 1
 [INFO] [1736391446.665502766] [batterylistener]: Received battery level: 100% -- Count: 2
 [INFO] [1736391447.665620294] [batterylistener]: Received battery level: 100% -- Count: 3
 ```
 - バッテリー残量が20%以下のとき
 ```
-$ ros2 run jyuden batterylistener
+$ ros2 run jyuden_pkg batterylistener
 [INFO] [1736392657.650492455] [batterylistener]: Received battery level: 18% -- Count: 1
 [WARN] [1736392657.650813334] [batterylistener]: Battery level is low!
 [INFO] [1736392658.644964797] [batterylistener]: Received battery level: 18% -- Count: 2
